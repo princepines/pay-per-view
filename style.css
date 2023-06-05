@@ -1,0 +1,19 @@
+body {
+    background-color: lightslategray !important;
+}
+
+.container {
+    padding: 2% !important;
+    background-color: whitesmoke;
+    margin: 1%;
+    border-radius: 35px;
+}
+
+.navbar {
+    padding-left: 2% !important;
+    padding-right: 2% !important;
+}
+
+.main {
+    padding: 2% !important;
+}
