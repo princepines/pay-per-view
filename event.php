@@ -11,7 +11,7 @@ if (!isset($_SESSION['loggedin'])) {
 
 <head>
     <meta charset="UTF-8">
-    <title>K4th Production - PPV Login</title>
+    <title>TechSPARKS IBMLT PPV</title>
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
