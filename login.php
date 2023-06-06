@@ -125,7 +125,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 					</div><br>
 					<h4>Don't have a code?</h4>
 					<a href="register.php" class="btn btn-dark">Register</a>
-				</form><br>
+				</form>
 			</div>
 		</div>
 	</div>
