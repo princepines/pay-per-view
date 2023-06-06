@@ -96,11 +96,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	<link rel="icon" type="image/x-icon" href="white.png">
 </head>
 <body>
+<img src="poster.png" alt="K4th Production" class="row" style="height:240px; object-fit: cover; object-position: 100% 15%">
 	<div class="container">
 		<div class="row">
-			<div class="col">
-				<img src="poster.png" alt="K4th Production" style="height:240px; object-fit: cover; object-position: 100% 15%">
-			</div>
 			<div class="col">
 				<h1>Login to the event</h1>
 				<p>Please fill in your code to login.</p>
