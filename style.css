@@ -9,6 +9,10 @@ body {
     margin: 2%;
 }
 
+.navbar {
+    padding-left: 5% !important;
+    padding-right: 5% !important;
+}
 
 .main {
     padding: 2% !important;
