@@ -113,7 +113,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 						<label>Code</label>
 						<input type="text" name="code" class="form-control <?php echo (!empty($code_err)) ? 'is-invalid' : ''; ?>" value="<?php /*echo $code; */?>">
 						<span class="invalid-feedback"><?php echo $code_err; ?></span>
-					</div>
+					</div><br>
 					<div class="form-group">
 						<input type="submit" class="btn btn-primary" value="Login">
 					</div>
