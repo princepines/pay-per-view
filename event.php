@@ -20,7 +20,6 @@ if (!isset($_SESSION['loggedin'])) {
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
     <link rel="icon" type="image/x-icon" href="white.png">
-    <script src="https://hlsjs.video-dev.org/dist/hls.js"></script>
 </head>
 
 <body>
@@ -28,7 +27,8 @@ if (!isset($_SESSION['loggedin'])) {
     <div class="container">
         <div class="row">
             <div class="col">
-                <video id="video" controls height="84.5%"></video>
+                <script src="https://hlsjs.video-dev.org/dist/hls.js"></script>
+                <center><video id="video" controls height="84.5%"></video></center>
                 <script>
                 var video = document.getElementById('video');
                 if (Hls.isSupported()) {
