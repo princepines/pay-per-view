@@ -67,11 +67,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // submit data to action.php
     if (empty($firstname_err) && empty($lastname_err) && empty($email_err) && empty($phone_err)) {
      // Prepare an insert statement
-     $sql = "INSERT INTO events (code, firstname, lastname, email, phone, paid) VALUES (?, ?, ?, ?, ?, ?)";
+     $sql = "INSERT INTO events (code, firstname, lastname, email, phone, paid, device_once) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
      if ($stmt = mysqli_prepare($mysqli, $sql)) {
         // Bind variables to the prepared statement as parameters
-        mysqli_stmt_bind_param($stmt, "ssssss", $param_code, $param_firstname, $param_lastname, $param_email, $param_phone, $param_paid);
+        mysqli_stmt_bind_param($stmt, "sssssss", $param_code, $param_firstname, $param_lastname, $param_email, $param_phone, $param_paid, $param_device_once);
 
         // Set parameters
         $param_code = generateRandomString();
@@ -80,6 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $param_email = $email;
         $param_phone = $phone;
         $param_paid = "0";
+        $param_device_once = "0";
 
         // Attempt to execute the prepared statement
         if (mysqli_stmt_execute($stmt)) {
