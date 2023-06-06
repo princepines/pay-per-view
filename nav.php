@@ -8,6 +8,7 @@
             <a class="nav-item nav-link" href="/">Home</a>
             <a class="nav-item nav-link" href="https://tsibml.mooo.com" target="_blank">Stats</a>  
             <a class="nav-item nav-link" href="about.php">About</a> 
+            <a class="nav-item nav-link" href="logout.php">Logout</a>
      </div>
   </div>
 </nav>
