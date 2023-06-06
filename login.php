@@ -12,7 +12,7 @@ require "config.php";
 
 // Define variables and initialize with empty values
 $code = $code_err = "";
-$paid = $paid_err = "";
+$paid_err = "";
 
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -22,12 +22,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	} else{
 		$code = trim($_POST["code"]);
 	}
-
-	// get paid status
-	$sql = "SELECT paid FROM events WHERE code = '$code'";
-	$result = mysqli_query($mysqli, $sql);
-	$row = mysqli_fetch_assoc($result);
-	$paid = $row['paid'];
 
 	// Validate credentials
 	if(empty($code_err)){
@@ -51,14 +45,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 					// Bind result variables
 					mysqli_stmt_bind_result($stmt, $id, $code);
 					if(mysqli_stmt_fetch($stmt)){
+						// get paid status
+						$sql2 = "SELECT paid FROM events WHERE code = '$code'";
+						$result = mysqli_query($mysqli, $sql2);
+						$row = mysqli_fetch_assoc($result);
+
 						// Store data in session variables
 						$_SESSION["loggedin"] = true;
 						$_SESSION["id"] = $id;
 						$_SESSION["code"] = $code;
-						$_SESSION["paid"] = $paid;
+						$_SESSION["paid"] = $row['paid'];
 
 						// Redirect user to welcome page
-						if ($paid == "1") {
+						if ($_SESSION["paid"] == "1") {
 							session_start();
 							header("location: event.php");
 						} else {
@@ -87,24 +86,29 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>K4th Production - PPV Login</title>
-	<link rel="stylesheet" href="style.css?v=1.1">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-	<link rel="icon" type="image/x-icon" href="white.png">
-</head>
-<body>
-	<div class="container">
-		<div class="row">
-			<img src="poster.png" alt="K4th Production">
-			<div class="col">
-				<h1>Login to the event</h1>
-				<p>Please fill in your code to login.</p>
 
-				<?php
+<head>
+    <meta charset="UTF-8">
+    <title>K4th Production - PPV Login</title>
+    <link rel="stylesheet" href="style.css?v=1.1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <link rel="icon" type="image/x-icon" href="white.png">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <img src="poster.png" alt="K4th Production">
+            <div class="col">
+                <h1>Login to the event</h1>
+                <p>Please fill in your code to login.</p>
+
+                <?php
                 if(!empty($login_err)){
                     echo '<div class="alert alert-danger">' . $code_err . '</div>';
                 }
@@ -114,20 +118,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				}
                 ?>
 
-				<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-					<div class="form-group">
-						<label>Code</label>
-						<input type="text" name="code" class="form-control <?php echo (!empty($code_err)) ? 'is-invalid' : ''; ?>" value="<?php /*echo $code; */?>">
-						<span class="invalid-feedback"><?php echo $code_err; ?></span>
-					</div><br>
-					<div class="form-group">
-						<input type="submit" class="btn btn-dark" value="Login">
-					</div><br>
-					<h4>Don't have a code?</h4>
-					<a href="register.php" class="btn btn-dark">Register</a>
-				</form>
-			</div>
-		</div>
-	</div>
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                    <div class="form-group">
+                        <label>Code</label>
+                        <input type="text" name="code"
+                            class="form-control <?php echo (!empty($code_err)) ? 'is-invalid' : ''; ?>"
+                            value="<?php /*echo $code; */?>">
+                        <span class="invalid-feedback"><?php echo $code_err; ?></span>
+                    </div><br>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-dark" value="Login">
+                    </div><br>
+                    <h4>Don't have a code?</h4>
+                    <a href="register.php" class="btn btn-dark">Register</a>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
