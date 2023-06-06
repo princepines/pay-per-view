@@ -62,7 +62,7 @@ if (!isset($_SESSION['loggedin'])) {
             </script>
         </div><br>
         <div class="row">
-        <script type='text/javascript' src="restrict.js"><script id="<?php echo $_ENV['EMBEDID_CHATANGO'];?>" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 100%;height: 300px;">{"handle":"ibml","arch":"js","styles":{"a":"121212","b":100,"c":"FFFFFF","d":"FFFFFF","k":"121212","l":"121212","m":"121212","n":"FFFFFF","p":"13.41","q":"121212","r":100,"t":0,"usricon":0,"surl":0,"allowpm":0,"cnrs":"0.37"}}</script></script>
+            <script id="<?php echo $_ENV['EMBEDID_CHATANGO'];?>" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 100%;height: 300px;">{"handle":"ibml","arch":"js","styles":{"a":"121212","b":100,"c":"FFFFFF","d":"FFFFFF","k":"121212","l":"121212","m":"121212","n":"FFFFFF","p":"13.41","q":"121212","r":100,"t":0,"usricon":0,"surl":0,"allowpm":0,"cnrs":"0.37"}}</script>
         </div>
     </div>
 </body>
