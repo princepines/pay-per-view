@@ -167,6 +167,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="form-group">
                         <input type="submit" class="btn btn-dark" value="Submit">
                         <input type="reset" class="btn btn-secondary ml-2" value="Reset">
+                        <button type="button" class="btn btn-secondary ml-2" onclick="window.location.href='login.php'">Go back to Login</button>
                     </div>
                 </form>
             </div>
