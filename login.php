@@ -57,7 +57,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 							header("location: event.php");
 						} else {
 							session_destroy();
-							$paid_err = "You have not paid for this event. Please contact us in messenger (m.me/princepiness) to pay.";
+							$paid_err = "You have not paid for this event. Please contact us in messenger (m.me/k4thprod) to pay.";
 						}
 					}
 				} else{
