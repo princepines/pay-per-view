@@ -1,173 +1,93 @@
 <?php
 
-require_once "config.php";
-
-// Define variables and initialize with empty values
-$firstname = $lastname = $email = $phone = "";
-$firstname_err = $lastname_err = $email_err = $phone_err = "";
-$code = $code_err = "";
-
-// Processing form data when form is submitted
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    // Validate firstname
-    if(empty(trim($_POST["firstname"]))){
-        $firstname_err = "Please enter a firstname.";
-    } else{
-        // Prepare a select statement
-        $sql = "SELECT id FROM events WHERE firstname = ?";
-
-        if($stmt = mysqli_prepare($mysqli, $sql)){
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "s", $param_firstname);
-
-            // Set parameters
-            $param_firstname = trim($_POST["firstname"]);
-
-            // Attempt to execute the prepared statement
-            if(mysqli_stmt_execute($stmt)){
-                /* store result */
-                mysqli_stmt_store_result($stmt);
-
-                if(mysqli_stmt_num_rows($stmt) == 1){
-                    $firstname_err = "This firstname is already taken.";
-                } else{
-                    $firstname = trim($_POST["firstname"]);
-                }
-            } else{
-                echo "Oops! Something went wrong. Please try again later.";
-            }
+// input validation before going to action.php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["firstname"])) {
+        $firstname_err = "First name is required";
+    } else {
+        $firstname = test_input($_POST["firstname"]);
+        // check if name only contains letters and whitespace
+        if (!preg_match("/^[a-zA-Z-' ]*$/", $firstname)) {
+            $firstname_err = "Only letters and white space allowed";
         }
-
-        // Close statement
-        mysqli_stmt_close($stmt);
     }
-
-    // Validate lastname
-    if(empty(trim($_POST["lastname"]))){
-        $lastname_err = "Please enter a lastname.";
-    } else{
-        // Prepare a select statement
-        $sql = "SELECT id FROM events WHERE lastname = ?";
-
-        if($stmt = mysqli_prepare($mysqli, $sql)){
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "s", $param_lastname);
-
-            // Set parameters
-            $param_lastname = trim($_POST["lastname"]);
-
-            // Attempt to execute the prepared statement
-            if(mysqli_stmt_execute($stmt)){
-                /* store result */
-                mysqli_stmt_store_result($stmt);
-
-                if(mysqli_stmt_num_rows($stmt) == 1){
-                    $lastname_err = "This lastname is already taken.";
-                } else{
-                    $lastname = trim($_POST["lastname"]);
-                }
-            } else{
-                echo "Oops! Something went wrong. Please try again later.";
-            }
+    if (empty($_POST["lastname"])) {
+        $lastname_err = "Last name is required";
+    } else {
+        $lastname = test_input($_POST["lastname"]);
+        // check if name only contains letters and whitespace
+        if (!preg_match("/^[a-zA-Z-' ]*$/", $lastname)) {
+            $lastname_err = "Only letters and white space allowed";
         }
-
-        // Close statement
-        mysqli_stmt_close($stmt);
     }
-
-    // Validate email
-    if(empty(trim($_POST["email"]))){
-        $email_err = "Please enter a email.";
-    } else{
-        // Prepare a select statement
-        $sql = "SELECT id FROM events WHERE email = ?";
-        if($stmt = mysqli_prepare($mysqli, $sql)){
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "s", $param_email);
-            // Set parameters
-            $param_email = trim($_POST["email"]);
-            // Attempt to execute the prepared statement
-            if(mysqli_stmt_execute($stmt)){
-                /* store result */
-                mysqli_stmt_store_result($stmt);
-                if(mysqli_stmt_num_rows($stmt) == 1){
-                    $email_err = "This email is already taken.";
-                } else{
-                    $email = trim($_POST["email"]);
-                }
-            } else{
-                echo "Oops! Something went wrong. Please try again later.";
-            }
+    if (empty($_POST["email"])) {
+        $email_err = "Email is required";
+    } else {
+        $email = test_input($_POST["email"]);
+        // check if email is valid
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $email_err = "Invalid email format";
         }
-        // Close statement
-        mysqli_stmt_close($stmt);
+    }
+    if (empty($_POST["phone"])) {
+        $phone_err = "Phone number is required";
+    } else {
+        $phone = test_input($_POST["phone"]);
+        // check if phone number is valid
+        if (!preg_match("/^[0-9]*$/", $phone)) {
+            $phone_err = "Only numbers allowed";
+        }
     }
 
-    // create function for the code generator
-    function generateRandomString($length = 6) {
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $charactersLength = strlen($characters);
-        // $randomString = '';
-        // for ($i = 0; $i < $length; $i++) {
-        //     $randomString .= $characters[rand(0, $charactersLength - 1)];
-        // }
-        // return $randomString;
-        return substr(str_shuffle($characters), 0, $length);
-    }
+    // function to clean input data
+function test_input($data)
+{
+    $data = trim($data); // Strip unnecessary characters (extra space, tab, newline)
+    $data = stripslashes($data); // Remove backslashes (\)
+    $data = htmlspecialchars($data); // converts special characters to HTML entities
+    return $data;
+}
 
-    // store the code in variable and databse using mysqli_stmt_store_result
-    $code = generateRandomString();
-    $sql = "SELECT id FROM events WHERE code = ?";
-    if($stmt = mysqli_prepare($mysqli, $sql)){
+// generate function for code
+function generateRandomString($length = 10) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $code = '';
+    for ($i = 0; $i < $length; $i++) {
+        $code .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $code;
+}
+
+// submit data to action.php
+if (empty($firstname_err) && empty($lastname_err) && empty($email_err) && empty($phone_err)) {
+     // Prepare an insert statement
+     $sql = "INSERT INTO events (code, firstname, lastname, email, phone, paid) VALUES (?, ?, ?, ?, ?, ?)";
+
+     if ($stmt = mysqli_prepare($mysqli, $sql)) {
         // Bind variables to the prepared statement as parameters
-        mysqli_stmt_bind_param($stmt, "s", $param_code);
+        mysqli_stmt_bind_param($stmt, "ssssss", $param_code, $param_firstname, $param_lastname, $param_email, $param_phone, $param_paid);
+
         // Set parameters
-        $param_code = $code;
+        $param_code = generateRandomString();
+        $param_firstname = $firstname;
+        $param_lastname = $lastname;
+        $param_email = $email;
+        $param_phone = $phone;
+        $param_paid = "0";
+
         // Attempt to execute the prepared statement
-        if(mysqli_stmt_execute($stmt)){
-            /* store result */
-            mysqli_stmt_store_result($stmt);
-            if(mysqli_stmt_num_rows($stmt) == 1){
-                $code_err = "This code is already taken.";
-            } else{
-                $code = $code;
-            }
-        } else{
-            echo "Oops! Something went wrong. Please try again later.";
+        if (mysqli_stmt_execute($stmt)) {
+            // Redirect to login page
+            header("location: event.php");
+        } else {
+            echo "Something went wrong. Please try again later.";
         }
-    }
+     }
 
-
-    // Validate phone
-    if(empty(trim($_POST["phone"]))){
-        $phone_err = "Please enter a phone.";
-    } else{
-        // Prepare a select statement
-        $sql = "SELECT id FROM events WHERE phone = ?";
-        if($stmt = mysqli_prepare($mysqli, $sql)){
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "s", $param_phone);
-            // Set parameters
-            $param_phone = trim($_POST["phone"]);
-            // Attempt to execute the prepared statement
-            if(mysqli_stmt_execute($stmt)){
-                /* store result */
-                mysqli_stmt_store_result($stmt);
-                if(mysqli_stmt_num_rows($stmt) == 1){
-                    $phone_err = "This phone is already taken.";
-                } else{
-                    $phone = trim($_POST["phone"]);
-                }
-            } else{
-                echo "Oops! Something went wrong. Please try again later.";
-            }
-        }
         // Close statement
         mysqli_stmt_close($stmt);
     }
-
-    // set code as non-paid table
-    $sql = "UPDATE events SET paid = '0' WHERE code = '$code'";
 }
 ?>
 
@@ -177,7 +97,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <head>
     <meta charset="UTF-8">
     <title>K4th Production - PPV Register</title>
-	<link rel="stylesheet" href="style.css?v=1.1">
+    <link rel="stylesheet" href="style.css?v=1.1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -220,4 +140,5 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </div>
     </div>
 </body>
+
 </html>
