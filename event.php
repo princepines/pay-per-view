@@ -53,7 +53,7 @@ if (!isset($_SESSION['loggedin'])) {
             </script>
         </div>
         <div class="row">
-        <script id="cid0020000347066052092" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 640px;height: 234px;">{"handle":"ibml","arch":"js","styles":{"a":"121212","b":100,"c":"FFFFFF","d":"FFFFFF","k":"121212","l":"121212","m":"121212","n":"FFFFFF","p":"10","q":"121212","r":100,"t":0,"usricon":0.86,"cv":1,"cvfnt":"'Helvetica Neue', Helvetica, Arial, sans-serif, sans-serif","cvfntsz":"10px","cvfntw":"lighter","cvbg":"121212","cvw":116,"cvh":30,"allowpm":0,"cnrs":"0.35","fwtickm":1}}</script>
+        <script id="cid0020000347066252382" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 100%;height: 100%;">{"handle":"ibml","arch":"js","styles":{"a":"121212","b":100,"c":"FFFFFF","d":"FFFFFF","k":"121212","l":"121212","m":"121212","n":"FFFFFF","p":"10","q":"121212","r":100,"t":0,"usricon":0.86,"allowpm":0,"cnrs":"0.35","fwtickm":1}}</script>
         </div>
     </div>
 </body>
