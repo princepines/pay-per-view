@@ -28,6 +28,7 @@ if (!isset($_SESSION['loggedin'])) {
     </script>
     <link rel="icon" type="image/x-icon" href="white.png">
     <script type='text/javascript' src="restrict.js"></script>
+    <meta http-equiv="refresh" content="1800;url=logout.php" />
 </head>
 
 <body>
