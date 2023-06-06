@@ -22,7 +22,7 @@ if (!isset($_SESSION['loggedin'])) {
     <link rel="icon" type="image/x-icon" href="white.png">
 </head>
 <body>
-    <?php include 'nav.php';?>
+    <?php require 'nav.php';?>
     <div class="container">
         <div class="row">
             <div class="col">
