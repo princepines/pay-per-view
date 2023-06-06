@@ -1,6 +1,9 @@
 <?php
+require 'vendor/autoload.php';
+
+use Dotenv\Dotenv;
 // initialize dotenv and variables
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv = Dotenv/Dotenv::createImmutable(__DIR__);
 $dotenv->safeLoad();
 
 /* Database credentials. Assuming you are running MySQL
