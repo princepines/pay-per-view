@@ -15,7 +15,7 @@
                 <h1>Interbarangay ML Tournament 2023</h1>
                 <!-- Insert Live Stats -->
                 <!-- Insert BracketHQ -->
-                <!-- Insert Button for Pay-Per-View -->
+                <button class="btn btn-primary">Watch Now!</button>
             </div>
         </div>
 </body>
