@@ -98,9 +98,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <body>
 	<div class="container">
 		<div class="row">
-			<div>
-				<img src="poster.png" alt="K4th Production">
-			</div>
+			<img src="poster.png" alt="K4th Production"><br>
 			<div class="col">
 				<h1>Login to the event</h1>
 				<p>Please fill in your code to login.</p>
