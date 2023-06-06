@@ -28,14 +28,14 @@ if (!isset($_SESSION['loggedin'])) {
     <div class="container">
         <div class="row">
             <div class="col">
-                <video id="video" controls></video>
+                <video id="video" controls style="width:auto;"></video>
                 <script>
                 var video = document.getElementById('video');
                 if (Hls.isSupported()) {
                     var hls = new Hls({
                         debug: true,
                     });
-                    hls.loadSource('https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8');
+                    hls.loadSource('https://streaming.cnnphilippines.com/live/myStream/playlist.m3u8');
                     hls.attachMedia(video);
                     hls.on(Hls.Events.MEDIA_ATTACHED, function() {
                         video.muted = true;
@@ -46,7 +46,7 @@ if (!isset($_SESSION['loggedin'])) {
                 // When the browser has built-in HLS support (check using `canPlayType`), we can provide an HLS manifest (i.e. .m3u8 URL) directly to the video element through the `src` property.
                 // This is using the built-in support of the plain video element, without using hls.js.
                 else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-                    video.src = 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8';
+                    video.src = 'https://streaming.cnnphilippines.com/live/myStream/playlist.m3u8';
                     video.addEventListener('canplay', function() {
                         video.play();
                     });
