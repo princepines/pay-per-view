@@ -20,9 +20,6 @@ if (!isset($_SESSION['loggedin'])) {
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
     <link rel="icon" type="image/x-icon" href="white.png">
-    <script src="/phpfreechat-2.1.1/client/lib/jquery-1.8.2.min.js" type="text/javascript"></script>
-    <link rel="stylesheet" type="text/css" href="/phpfreechat-2.1.1/client/themes/default/pfc.min.css" />
-    <script src="/phpfreechat-2.1.1/client/pfc.min.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -56,8 +53,7 @@ if (!isset($_SESSION['loggedin'])) {
             </script>
         </div>
         <div class="row">
-            <div id="mychat"><a href="http://www.phpfreechat.net">Creating chat rooms everywhere - phpFreeChat</a></div>
-            <script type="text/javascript">$('#mychat').phpfreechat({ serverUrl: '/phpfreechat-2.1.1/server' });</script>
+        <script id="cid0020000347066052092" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 640px;height: 234px;">{"handle":"ibml","arch":"js","styles":{"a":"121212","b":100,"c":"FFFFFF","d":"FFFFFF","k":"121212","l":"121212","m":"121212","n":"FFFFFF","p":"10","q":"121212","r":100,"t":0,"usricon":0.86,"cv":1,"cvfnt":"'Helvetica Neue', Helvetica, Arial, sans-serif, sans-serif","cvfntsz":"10px","cvfntw":"lighter","cvbg":"121212","cvw":116,"cvh":30,"allowpm":0,"cnrs":"0.35","fwtickm":1}}</script>
         </div>
     </div>
 </body>
