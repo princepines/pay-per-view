@@ -20,9 +20,8 @@ if (!isset($_SESSION['loggedin'])) {
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
     <link rel="icon" type="image/x-icon" href="white.png">
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="https://hlsjs.video-dev.org/dist/hls.js"></script>
 </head>
-
 <body>
     <?php require 'nav.php';?>
     <div class="container">
