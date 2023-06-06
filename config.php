@@ -30,6 +30,7 @@ if($mysqli === false){
         `email` varchar(255) NOT NULL,
         `phone` varchar(255) NOT NULL,
         `paid` varchar(255) NOT NULL,
+        `device_once` varchar(255) NOT NULL,
         `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY (`id`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";

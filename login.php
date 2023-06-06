@@ -7,7 +7,6 @@ if (isset($_SESSION['loggedin'])) {
 	exit;
 }
 
-
 require "config.php";
 
 // Define variables and initialize with empty values
@@ -49,17 +48,34 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 						$sql2 = "SELECT paid FROM events WHERE code = '$code'";
 						$result = mysqli_query($mysqli, $sql2);
 						$row = mysqli_fetch_assoc($result);
+						
+						$sql3 = "SELECT device_once FROM events WHERE code = '$code'";
+						$result2 = mysqli_query($mysqli, $sql3);
+						$row2 = mysqli_fetch_assoc($result2);
 
 						// Store data in session variables
 						$_SESSION["loggedin"] = true;
 						$_SESSION["id"] = $id;
 						$_SESSION["code"] = $code;
 						$_SESSION["paid"] = $row['paid'];
+						$_SESSION["device_once"] = $row2['device_once'];
 
 						// Redirect user to welcome page
 						if ($_SESSION["paid"] == "1") {
-							session_start();
-							header("location: event.php");
+							if($_SESSION["device_once"] == "1") {
+								$_SESSION["loggedin"] = false;
+								$_SESSION["id"] = "";
+								$_SESSION["code"] = "";
+								$_SESSION["paid"] = "";
+								$_SESSION["device_once"] = "";
+								session_abort();
+								$paid_err = "You have already logged in. Please contact us in messenger (m.me/k4thprod) to reset your device.";
+							} else {
+								$sql4 = "UPDATE events SET device_once = '1' WHERE code = '$code'";
+								$result3 = mysqli_query($mysqli, $sql4);
+								session_start();
+								header("location: event.php");
+							}
 						} else {
 							session_abort();
 							$paid_err = "You have not paid for this event. Please contact us in messenger (m.me/k4thprod) to pay.";
