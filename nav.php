@@ -4,10 +4,10 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="/">Home</a>
-      <a class="nav-item nav-link" href="https://tsibml.mooo.com" target="_blank">Stats</a>  
-      <a class="nav-item nav-link" href="about.php">About</a> 
-    </div>
+        <div class="navbar-nav">
+            <a class="nav-item nav-link" href="/">Home</a>
+            <a class="nav-item nav-link" href="https://tsibml.mooo.com" target="_blank">Stats</a>  
+            <a class="nav-item nav-link" href="about.php">About</a> 
+     </div>
   </div>
 </nav>
