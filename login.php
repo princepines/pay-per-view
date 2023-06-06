@@ -23,6 +23,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		$code = trim($_POST["code"]);
 	}
 
+	// get paid status
+	$sql = "SELECT paid FROM events WHERE code = '$code'";
+	$result = mysqli_query($mysqli, $sql);
+	$row = mysqli_fetch_assoc($result);
+	$paid = $row['paid'];
+
 	// Validate credentials
 	if(empty($code_err)){
 		// Prepare a select statement
@@ -56,7 +62,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 							session_start();
 							header("location: event.php");
 						} else {
-							session_destroy();
 							$paid_err = "You have not paid for this event. Please contact us in messenger (m.me/k4thprod) to pay.";
 						}
 					}
