@@ -99,7 +99,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	<div class="container">
 		<div class="row">
 			<div class="col">
-				<img src="poster.png" alt="K4th Production" style="object-fit: cover;">
+				<img src="poster.png" alt="K4th Production" style="height:500px; object-fit: cover;">
 			</div>
 			<div class="col">
 				<h1>Login to the event</h1>
