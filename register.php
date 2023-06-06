@@ -115,16 +115,29 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         return substr(str_shuffle($characters), 0, $length);
     }
 
-    // store the code in variable and database
+    // store the code in variable and databse using mysqli_stmt_store_result
     $code = generateRandomString();
-    if (empty($code_err)) {
-        $sql = "INSERT INTO events (code) VALUES ('$code')";
-        if ($mysqli->query($sql) === TRUE) {
-            // echo "New record created successfully";
-        } else {
-            echo "Error: " . $sql . "<br>" . $mysqli->error;
+    $sql = "SELECT id FROM events WHERE code = ?";
+    if($stmt = mysqli_prepare($mysqli, $sql)){
+        // Bind variables to the prepared statement as parameters
+        mysqli_stmt_bind_param($stmt, "s", $param_code);
+        // Set parameters
+        $param_code = $code;
+        // Attempt to execute the prepared statement
+        if(mysqli_stmt_execute($stmt)){
+            /* store result */
+            mysqli_stmt_store_result($stmt);
+            if(mysqli_stmt_num_rows($stmt) == 1){
+                //regenerate code
+                $code = generateRandomString();
+            } else{
+                $code = $code;
+            }
+        } else{
+            echo "Oops! Something went wrong. Please try again later.";
         }
     }
+
 
     // Validate phone
     if(empty(trim($_POST["phone"]))){
