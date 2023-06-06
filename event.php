@@ -26,8 +26,7 @@ if (!isset($_SESSION['loggedin'])) {
     <?php require 'nav.php';?>
     <div class="container">
         <div class="row">
-            <div class="col">
-                <script src="https://hlsjs.video-dev.org/dist/hls.js"></script>
+        <script src="https://hlsjs.video-dev.org/dist/hls.js"></script>
                 <video id="video" controls autoplayautoplay height="100vh"></video>
                 <script>
                 var video = document.getElementById('video');
@@ -52,6 +51,8 @@ if (!isset($_SESSION['loggedin'])) {
                     });
                 }
                 </script>
+            <div class="col">
+                
             </div>
         </div>
     </div>
