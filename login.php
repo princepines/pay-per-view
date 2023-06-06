@@ -115,10 +115,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 						<span class="invalid-feedback"><?php echo $code_err; ?></span>
 					</div><br>
 					<div class="form-group">
-						<input type="submit" class="btn btn-primary" value="Login">
+						<input type="submit" class="btn btn-dark" value="Login">
 					</div><br>
 					<h4>Don't have a code?</h4>
-					<a href="register.php" class="btn btn-primary">Register</a>
+					<a href="register.php" class="btn btn-dark">Register</a>
 				</form>
 			</div>
 		</div>
