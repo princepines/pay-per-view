@@ -20,9 +20,9 @@ if (!isset($_SESSION['loggedin'])) {
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
     <link rel="icon" type="image/x-icon" href="white.png">
-    <script src="/phpfreechat-2.1.1/client/lib/jquery-1.8.2.min.js" type="text/javascript"></script>
-    <link rel="stylesheet" type="text/css" href="/phpfreechat-2.1.1/client/themes/carbon/pfc.min.css" />
-    <script src="/phpfreechat-2.1.1/client/pfc.min.js" type="text/javascript"></script>
+    <script src="/phpfreechat-2.10/client/lib/jquery-1.8.2.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="/phpfreechat-2.1.0/client/themes/carbon/pfc.min.css" />
+    <script src="/phpfreechat-2.1.0/client/pfc.min.js" type="text/javascript"></script>
 </head>
 
 <body>
