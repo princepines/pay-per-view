@@ -62,74 +62,32 @@ if (window.sidebar){
     document.onclick=reEnable
 }
 
-/*!
-devtools-detect
-https://github.com/sindresorhus/devtools-detect
-By Sindre Sorhus
-MIT License
-*/
-
-const devtools = {
-	isOpen: false,
-	orientation: undefined,
-};
-
-const threshold = 170;
-
-const emitEvent = (isOpen, orientation) => {
-	globalThis.dispatchEvent(new globalThis.CustomEvent('devtoolschange', {
-		detail: {
-			isOpen,
-			orientation,
-		},
-	}));
-};
-
-const main = ({emitEvents = true} = {}) => {
-	const widthThreshold = globalThis.outerWidth - globalThis.innerWidth > threshold;
-	const heightThreshold = globalThis.outerHeight - globalThis.innerHeight > threshold;
-	const orientation = widthThreshold ? 'vertical' : 'horizontal';
-
-	if (
-		!(heightThreshold && widthThreshold)
-		&& ((globalThis.Firebug && globalThis.Firebug.chrome && globalThis.Firebug.chrome.isInitialized) || widthThreshold || heightThreshold)
-	) {
-		if ((!devtools.isOpen || devtools.orientation !== orientation) && emitEvents) {
-			emitEvent(true, orientation);
-		}
-
-		devtools.isOpen = true;
-		devtools.orientation = orientation;
-	} else {
-		if (devtools.isOpen && emitEvents) {
-			emitEvent(false, undefined);
-		}
-
-		devtools.isOpen = false;
-		devtools.orientation = undefined;
-	}
-};
-
-main({emitEvents: false});
-setInterval(main, 500);
-
-if (devtools.isOpen) {
-
-
-    setInterval(() => {
-
-        var $all = document.querySelectorAll("*");
-
-        for (var each of $all) {
-            each.classList.add(`asdjaljsdliasud8ausdijaisdluasdjasildahjdsk${Math.random()}`);
-        }
-        
-
-    }, 5);
-}
-
-if (devtools.isOpen) {
-    while (true) {
-        console.log("access denied")
-    }
-    }
+var currentHtmlContent; 
+ 
+var element = new Image(); 
+ 
+var elementWithHiddenContent = document.querySelector("#element-to-hide"); 
+ 
+var innerHtml = elementWithHiddenContent.innerHTML; 
+ 
+ 
+ 
+element.__defineGetter__("id", function() { 
+ 
+    currentHtmlContent= ""; 
+ 
+}); 
+ 
+ 
+ 
+setInterval(function() { 
+ 
+    currentHtmlContent= innerHtml; 
+ 
+    console.log(element); 
+ 
+    console.clear();  
+ 
+    elementWithHiddenContent.innerHTML = currentHtmlContent; 
+ 
+}, 1000); 
