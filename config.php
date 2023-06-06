@@ -15,7 +15,7 @@ define('DB_NAME', $_ENV['DB']);
 define('DB_PORT', $_ENV['PORT']);
  
 /* Attempt to connect to MySQL database */
-$mysqli = new mysqli (DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME, DB_PORT);
+$mysqli = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME, DB_PORT);
 
 // Check connection
 if($mysqli === false){
@@ -32,5 +32,11 @@ if($mysqli === false){
         `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY (`id`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";
+    // execute query
+    if ($mysqli->query($sql) === TRUE) {
+        // echo "Table created successfully";
+    } else {
+        echo "Error creating table: " . $mysqli->error;
+    }
 }
 ?>
