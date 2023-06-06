@@ -57,11 +57,7 @@ if (!isset($_SESSION['loggedin'])) {
         </div>
         <div class="row">
             <div id="mychat"><a href="http://www.phpfreechat.net">Creating chat rooms everywhere - phpFreeChat</a></div>
-            <script type="text/javascript">$('#mychat').phpfreechat({
-                serverUrl: '/phpfreechat-2.1.1/server',
-                refresh_delay: 2000
-             });
-            </script>
+            <script type="text/javascript">$('#mychat').phpfreechat({ serverUrl: '/phpfreechat-2.1.1/server' });</script>
         </div>
     </div>
 </body>
