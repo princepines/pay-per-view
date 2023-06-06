@@ -1,4 +1,12 @@
 <?php
+// function to clean input data
+function test_input($data)
+{
+    $data = trim($data); // Strip unnecessary characters (extra space, tab, newline)
+    $data = stripslashes($data); // Remove backslashes (\)
+    $data = htmlspecialchars($data); // converts special characters to HTML entities
+    return $data;
+}
 
 // input validation before going to action.php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -39,14 +47,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    // function to clean input data
-function test_input($data)
-{
-    $data = trim($data); // Strip unnecessary characters (extra space, tab, newline)
-    $data = stripslashes($data); // Remove backslashes (\)
-    $data = htmlspecialchars($data); // converts special characters to HTML entities
-    return $data;
-}
 
 // generate function for code
 function generateRandomString($length = 10) {
