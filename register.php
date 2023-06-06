@@ -1,4 +1,6 @@
 <?php
+$firstname_err = $lastname_err = $email_err = $phone_err = "";
+$code_confirm = $instructions = "";
 // function to clean input data
 function test_input($data)
 {
@@ -48,19 +50,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
 
-// generate function for code
-function generateRandomString($length = 10) {
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $charactersLength = strlen($characters);
-    $code = '';
-    for ($i = 0; $i < $length; $i++) {
-        $code .= $characters[rand(0, $charactersLength - 1)];
+    // generate function for code
+        function generateRandomString($length = 10) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $code = '';
+        for ($i = 0; $i < $length; $i++) {
+            $code .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $code;
     }
-    return $code;
-}
 
-// submit data to action.php
-if (empty($firstname_err) && empty($lastname_err) && empty($email_err) && empty($phone_err)) {
+    // submit data to action.php
+    if (empty($firstname_err) && empty($lastname_err) && empty($email_err) && empty($phone_err)) {
      // Prepare an insert statement
      $sql = "INSERT INTO events (code, firstname, lastname, email, phone, paid) VALUES (?, ?, ?, ?, ?, ?)";
 
@@ -79,7 +81,8 @@ if (empty($firstname_err) && empty($lastname_err) && empty($email_err) && empty(
         // Attempt to execute the prepared statement
         if (mysqli_stmt_execute($stmt)) {
             // Redirect to login page
-            header("location: event.php");
+            $code_confirm = "Thank you for registering, your code is " . $param_code . ". Please follow the instructions below.";
+            $instructions = "Please pay 30php to 0917 123 4567 (Gcash) or 1234 5678 9012 3456 (Paymaya) and send a screenshot to m.me/k4thprod, with your code and proof of payment, and your code will be activated.";
         } else {
             echo "Something went wrong. Please try again later.";
         }
@@ -113,6 +116,32 @@ if (empty($firstname_err) && empty($lastname_err) && empty($email_err) && empty(
             <div class="col">
                 <h1>Register for Pay-Per-View</h1>
                 <p>Please fill this form to create an account.</p>
+
+                <?php
+                if (!empty($firstname_err)) {
+                    echo '<div class="alert alert-danger">' . $firstname_err . '</div>';
+                }
+
+                if (!empty($lastname_err)) {
+                    echo '<div class="alert alert-danger">' . $lastname_err . '</div>';
+                }
+
+                if (!empty($email_err)) {
+                    echo '<div class="alert alert-danger">' . $email_err . '</div>';
+                }
+
+                if (!empty($phone_err)) {
+                    echo '<div class="alert alert-danger">' . $phone_err . '</div>';
+                }
+
+                if (!empty($code_confirm)) {
+                    echo '<div class="alert alert-success">' . $code_confirm . '</div>';
+                }
+
+                if (!empty($instructions)) {
+                    echo '<div class="alert alert-info">' . $instructions . '</div>';
+                }
+                ?>
 
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                     <div class="form-group">
