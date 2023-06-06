@@ -45,9 +45,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 					// Bind result variables
 					mysqli_stmt_bind_result($stmt, $id, $code);
 					if(mysqli_stmt_fetch($stmt)){
-						// Password is correct, so start a new session
-						session_start();
-
 						// Store data in session variables
 						$_SESSION["loggedin"] = true;
 						$_SESSION["id"] = $id;
@@ -56,8 +53,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 						// Redirect user to welcome page
 						if ($paid == "1") {
+							session_start();
 							header("location: event.php");
 						} else {
+							session_destroy();
 							$paid_err = "You have not paid for this event. Please contact us in messenger (m.me/princepiness) to pay.";
 						}
 					}
