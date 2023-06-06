@@ -179,7 +179,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1>Register to this event</h1>
+                <h1>Register for Pay-Per-View</h1>
                 <p>Please fill this form to create an account.</p>
 
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
