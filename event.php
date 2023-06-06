@@ -34,7 +34,7 @@ if (!isset($_SESSION['loggedin'])) {
                 if (Hls.isSupported()) {
                     var hls = new Hls();
                     hls.loadSource(
-                        'https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8'
+                        'https://streaming.cnnphilippines.com/live/myStream/playlist.m3u8'
                         );
                     hls.attachMedia(video);
                     hls.on(Hls.Events.MANIFEST_PARSED, function() {
@@ -46,7 +46,7 @@ if (!isset($_SESSION['loggedin'])) {
                 // This is using the built-in support of the plain video element, without using hls.js.
                 else if (video.canPlayType('application/vnd.apple.mpegurl')) {
                     video.src =
-                        'https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8';
+                        'https://streaming.cnnphilippines.com/live/myStream/playlist.m3u8';
                     video.addEventListener('canplay', function() {
                         video.play();
                     });
