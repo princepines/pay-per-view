@@ -28,7 +28,7 @@ if (!isset($_SESSION['loggedin'])) {
         <div class="row">
             <div class="col">
                 <script src="https://hlsjs.video-dev.org/dist/hls.js"></script>
-                <video id="video" controls autoplayautoplay height="84.5%"></video>
+                <video id="video" controls autoplayautoplay height="84.5vh"></video>
                 <script>
                 var video = document.getElementById('video');
                 if (Hls.isSupported()) {
