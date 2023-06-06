@@ -131,7 +131,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 //regenerate code
                 $code = generateRandomString();
             } else{
-                $code = $code;
+                $code_err = "You have been registered. Your code is: " . $code;
             }
         } else{
             echo "Oops! Something went wrong. Please try again later.";
