@@ -124,8 +124,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 						<input type="submit" class="btn btn-dark" value="Login">
 					</div><br>
 					<h4>Don't have a code?</h4>
-					<a href="register.php" class="btn btn-dark">Register</a><br>
-				</form>
+					<a href="register.php" class="btn btn-dark">Register</a>
+				</form><br>
 			</div>
 		</div>
 	</div>
