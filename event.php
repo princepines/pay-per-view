@@ -28,7 +28,7 @@ if (!isset($_SESSION['loggedin'])) {
     <div class="container">
         <div class="row">
             <div class="col">
-                <video id="video" controls height="600"></video>
+                <video id="video" controls height="100%"></video>
                 <script>
                 var video = document.getElementById('video');
                 if (Hls.isSupported()) {
