@@ -4,7 +4,8 @@ body {
 
 .container {
     padding: 2% !important;
-    background-color: whitesmoke;
+    background-color: black !important;
+    color: whitesmoke !important;
     margin: 1%;
 }
 
