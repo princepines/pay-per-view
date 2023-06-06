@@ -128,10 +128,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             /* store result */
             mysqli_stmt_store_result($stmt);
             if(mysqli_stmt_num_rows($stmt) == 1){
-                //regenerate code
-                $code = generateRandomString();
+                $code_err = "This code is already taken.";
             } else{
-                $code_err = "You have been registered. Your code is: " . $code;
+                $code = $code;
             }
         } else{
             echo "Oops! Something went wrong. Please try again later.";
