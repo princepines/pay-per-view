@@ -98,7 +98,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <body>
 	<div class="container">
 		<div class="row">
-			<div style="padding: 1%;">
+			<div style="padding: 1%; width: auto;">
 				<img src="poster.png" alt="K4th Production">
 			</div>
 			<div class="col">
