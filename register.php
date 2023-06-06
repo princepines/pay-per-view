@@ -1,4 +1,7 @@
 <?php
+//config
+require 'config.php';
+
 $firstname_err = $lastname_err = $email_err = $phone_err = "";
 $code_confirm = $instructions = "";
 // function to clean input data
