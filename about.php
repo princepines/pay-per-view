@@ -26,6 +26,23 @@ if (!isset($_SESSION['loggedin'])) {
     <?php require 'nav.php';?>
     <div class="container">
         <div class="row">
+            <h1>About this Project</h1>
+            <p>This project is made by K4th Production, Princepines Programming Group for the TechSPARKS IBMLT PPV
+                event.</p>
+            <p>It is made using PHP, MySQL, and HLS.js.</p>
+
+            <h2>Key Contributor Peoples</h2>
+            <ul>
+                <li>Frizth Lyco L. Tatierra <a href="https://github.com/Lycol50" target="_blank">(princepines)</a></li>
+            </ul>
+            <h3>Open-source Libraries Used</h3>
+            <ul>
+                <li>PHP 8</li>
+                <li>MySQL</li>
+                <li>HLS.js</li>
+                <li>Bootstrap 5</li>
+                <li>Chatango</li>
+            </ul>
         </div>
     </div>
 </body>
