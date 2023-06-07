@@ -6,7 +6,7 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
             <a class="nav-item nav-link" href="/">Home</a>
-            <a class="nav-item nav-link" href="https://tsibml.mooo.com" target="_blank">Stats</a>  
+            <a class="nav-item nav-link" href="https://tsibml.k4th.site" target="_blank">Stats</a>  
             <a class="nav-item nav-link" href="about.php">About</a> 
             <a class="nav-item nav-link" href="logout.php">Logout</a>
      </div>
