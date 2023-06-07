@@ -46,6 +46,7 @@ if (!isset($_SESSION['loggedin'])) {
                     <li>Bootstrap 5</li>
                     <li>Chatango</li>
                 </ul>
+                <h3>I am being hosted on Amazon EC2</h3>
             </div>
         </div>
     </div>
