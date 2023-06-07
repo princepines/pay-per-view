@@ -1,4 +1,13 @@
 <?php
+require 'vendor/autoload.php';
+
+use Dotenv\Dotenv;
+// initialize dotenv and variables
+$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv->safeLoad();
+
+$messenger_link= '<a href="'. $_ENV['MESSENGERLINK'] .'" target="_blank">'. $_ENV['MESSENGERLINK'] .'</a>';
+
 // We need to use sessions, so you should always start sessions using the below code.
 session_start();
 if (isset($_SESSION['loggedin'])) {
@@ -69,7 +78,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 								$_SESSION["paid"] = "";
 								$_SESSION["device_once"] = "";
 								session_abort();
-								$paid_err = "You have already logged in. Please contact us in messenger (m.me/k4thprod) to reset your device.";
+								$paid_err = "You have already logged in. Please contact us in messenger (". $messenger_link .") to reset your device.";
 							} else {
 								$sql4 = "UPDATE events SET device_once = '1' WHERE code = '$code'";
 								$result3 = mysqli_query($mysqli, $sql4);
@@ -78,7 +87,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 							}
 						} else {
 							session_abort();
-							$paid_err = "You have not paid for this event. Please contact us in messenger (m.me/k4thprod) to pay.";
+							$paid_err = "You have not paid for this event. Please contact us in messenger (". $messenger_link .") to pay.";
 						}
 					}
 				} else{

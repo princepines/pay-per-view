@@ -1,4 +1,13 @@
 <?php
+require 'vendor/autoload.php';
+
+use Dotenv\Dotenv;
+// initialize dotenv and variables
+$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv->safeLoad();
+
+$messenger_link= '<a href="'. $_ENV['MESSENGERLINK'] .'" target="_blank">'. $_ENV['MESSENGERLINK'] .'</a>';
+
 //config
 require 'config.php';
 
@@ -86,7 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (mysqli_stmt_execute($stmt)) {
             // Redirect to login page
             $code_confirm = "Thank you for registering, your code is " . $param_code . ". Please follow the instructions below.";
-            $instructions = "Please pay 30php to 0917 123 4567 (Gcash) or 1234 5678 9012 3456 (Paymaya) and send a screenshot to m.me/k4thprod, with your code and proof of payment, and your code will be activated.";
+            $instructions = "Please pay 30php to ". $_ENV['GCASHNUM'] ." (". $_ENV['GCASHNAME'] .") [GCash] and send a screenshot to ". $messenger_link .", with your code and proof of payment, and your code will be activated.";
         } else {
             echo "Something went wrong. Please try again later.";
         }
