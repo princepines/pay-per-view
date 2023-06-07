@@ -6,12 +6,19 @@ use Dotenv\Dotenv;
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->safeLoad();
 
+$stream_err = "";
+
 // We need to use sessions, so you should always start sessions using the below code.
 session_start();
 if (!isset($_SESSION['loggedin'])) {
 	header('Location: login.php');
 	exit;
 }
+
+if ($_ENV['ISLIVE'] == "0") {
+    $stream_err = "Stream is not live yet. Please refresh this page or come back later.";
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,6 +42,11 @@ if (!isset($_SESSION['loggedin'])) {
     <?php require 'nav.php';?>
     <div class="container">
         <div class="row">
+                <?php
+                if(!empty($stream_err)){
+                    echo '<div class="alert alert-danger">' . $stream_err . '</div>';
+                }
+                ?>
             <script src="https://hlsjs.video-dev.org/dist/hls.js"></script>
             <video id="video" controls autoplay></video>
             <script>
