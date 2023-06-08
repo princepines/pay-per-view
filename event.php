@@ -42,12 +42,14 @@ if ($_ENV['ISLIVE'] == "0") {
     <?php require 'nav.php';?>
     <div class="container">
         <div class="row">
+            <div class="col">
                 <?php
                 if(!empty($stream_err)){
                     echo '<div class="alert alert-danger">' . $stream_err . '</div>';
                 }
-                
                 ?>
+            </div>
+                
             <script src="https://hlsjs.video-dev.org/dist/hls.js"></script>
             <video id="video" controls autoplay></video>
             <script>
