@@ -68,6 +68,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 						$_SESSION["code"] = $code;
 						$_SESSION["paid"] = $row['paid'];
 						$_SESSION["device_once"] = $row2['device_once'];
+						$_SESSION['timestamp'] = time(); //set new timestamp
 
 						// Redirect user to welcome page
 						if ($_SESSION["paid"] == "1") {
