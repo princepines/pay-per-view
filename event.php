@@ -56,7 +56,7 @@ if ($mysqli->query($sql) === true)
 <body>
     <?php require 'nav.php';?>
     <div class="container">
-    <div class="row no-gutters">
+    <div class="row g-0">
             <div class="col">
             <?php
                 if(!empty($stream_err)){
@@ -64,7 +64,7 @@ if ($mysqli->query($sql) === true)
                 }
             ?>            </div>
         </div>
-        <div class="row no-gutters">
+        <div class="row g-0">
             <script src="https://hlsjs.video-dev.org/dist/hls.js"></script>
             <video id="video" controls autoplay></video>
             <script>
@@ -91,7 +91,7 @@ if ($mysqli->query($sql) === true)
             }
             </script>
         </div><br>
-        <div class="row no-gutters" oncontextmenu="return false;">
+        <div class="row g-0" oncontextmenu="return false;">
             <div class="col">
                 <script id="<?php echo $_ENV['EMBEDID_CHATANGO'];?>" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 100%;height: 300px;">{"handle":"ibml","arch":"js","styles":{"a":"121212","b":100,"c":"FFFFFF","d":"FFFFFF","k":"121212","l":"121212","m":"121212","n":"FFFFFF","p":"13.41","q":"121212","r":100,"t":0,"usricon":0,"surl":0,"allowpm":0,"cnrs":"0.37"}}</script>
             </div>
