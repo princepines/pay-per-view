@@ -251,6 +251,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
                 ?>
 
+                <div class="alert alert-warning">This is a Pay-Per-View event, you need to pay 30php to avail this. Register below to secure slot!</div>
+
+
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                     <div class="form-group">
                         <label>First Name</label>
