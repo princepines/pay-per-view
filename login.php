@@ -159,7 +159,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   }(document, 'script', 'facebook-jssdk'));
 </script>
     <div class="container">
-        <div class="row">
+        <div class="row g-0">
             <img src="poster.png" alt="K4th Production">
             <div class="col">
                 <h1>Login to the event</h1>
