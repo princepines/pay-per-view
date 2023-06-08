@@ -276,7 +276,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <input type="text" name="school" class="form-control ">
                     </div>
                     <div class="form-group">
-                        <label>Preffered Strand/Course in Informatics Northgate</label>
+                        <label>Preffered Strand/Course in <a href="https://www.facebook.com/photo/?fbid=5529790787058221&set=pcb.5529790863724880" class="alert-link" target="_blank">Informatics Northgate</a></label>
                         <input type="text" name="course" class="form-control ">
                     </div>
                     <div class="form-group">
