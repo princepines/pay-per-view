@@ -40,3 +40,7 @@ body::-webkit-scrollbar-thumb {
 body::-webkit-scrollbar-button {
     display:none;
 }
+
+.row {
+    --bs-gutter-x: 0rem !important;
+}
