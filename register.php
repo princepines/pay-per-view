@@ -14,6 +14,7 @@ require 'config.php';
 $firstname_err = $lastname_err = $email_err = $phone_err = "";
 $code_confirm = $instructions = "";
 $grade_course_err = $school_err = "";
+$parent_name_err = $parent_phone_err = "";
 
 // function to clean input data
 function test_input($data)
@@ -62,10 +63,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $phone_err = "Only numbers allowed";
         }
     }
-    if (empty($_POST["grade_course"])) {
-        $grade_course_err = "Grade level and strand/course is required";
+    if (empty($_POST["course"])) {
+        $grade_course_err = "Preffered Strand/course is required";
     } else {
-        $grade_course = test_input($_POST["grade_course"]);
+        $grade_course = test_input($_POST["course"]);
         // check if grade level and strand/course is valid
         if (!preg_match("/^[a-zA-Z0-9-' ]*$/", $grade_course)) {
             $grade_course_err = "Only letters, numbers and white space allowed";
@@ -78,6 +79,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // check if school is valid
         if (!preg_match("/^[a-zA-Z0-9-' ]*$/", $school)) {
             $school_err = "Only letters, numbers and white space allowed";
+        }
+    }
+
+    if (empty($_POST["parent_name"])) {
+        $parent_name_err = "Parent/Guardian's name is required";
+    } else {
+        $parent_name = test_input($_POST["parent_name"]);
+        // check if parent name is valid
+        if (!preg_match("/^[a-zA-Z-' ]*$/", $parent_name)) {
+            $parent_name_err = "Only letters and white space allowed";
+        }
+    }
+
+    if (empty($_POST["parent_phone"])) {
+        $parent_phone_err = "Parent/Guardian's contact number is required";
+    } else {
+        $parent_phone = test_input($_POST["parent_phone"]);
+        // check if parent phone number is valid
+        if (!preg_match("/^[0-9]*$/", $parent_phone)) {
+            $parent_phone_err = "Only numbers allowed";
         }
     }
 
@@ -97,11 +118,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // submit data to action.php
     if (empty($firstname_err) && empty($lastname_err) && empty($email_err) && empty($phone_err)) {
      // Prepare an insert statement
-     $sql = "INSERT INTO events (code, firstname, lastname, email, phone, paid, device_once, grade_course, school) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+     $sql = "INSERT INTO events (code, firstname, lastname, email, phone, paid, device_once, pref_course, school, parent_name, parent_phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
      if ($stmt = mysqli_prepare($mysqli, $sql)) {
         // Bind variables to the prepared statement as parameters
-        mysqli_stmt_bind_param($stmt, "sssssssss", $param_code, $param_firstname, $param_lastname, $param_email, $param_phone, $param_paid, $param_device_once, $param_grade_course, $param_school);
+        mysqli_stmt_bind_param($stmt, "sssssssssss", $param_code, $param_firstname, $param_lastname, $param_email, $param_phone, $param_paid, $param_device_once, $param_grade_course, $param_school, $param_parent_name, $param_parent_phone);
 
         // Set parameters
         $param_code = generateRandomString();
@@ -113,6 +134,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $param_device_once = "0";
         $param_grade_course = $grade_course;
         $param_school = $school;
+        $param_parent_name = $parent_name;
+        $param_parent_phone = $parent_phone;
+
         
 
         // Attempt to execute the prepared statement
@@ -225,17 +249,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <input type="text" name="email" class="form-control ">
                     </div>
                     <div class="form-group">
-                        <label>Phone Number</label>
+                        <label> Your Contact Number</label>
                         <input type="text" name="phone" class="form-control ">
-                    </div>
-                    <div class="form-group">
-                        <label>Grade Level and Strand/Course</label>
-                        <input type="text" name="grade_course" class="form-control ">
                     </div>
                     <div class="form-group">
                         <label>Full Name of School</label>
                         <input type="text" name="school" class="form-control ">
-                    </div><br>
+                    </div>
+                    <div class="form-group">
+                        <label>Preffered Strand/Course in Informatics Northgate</label>
+                        <input type="text" name="course" class="form-control ">
+                    </div>
+                    <div class="form-group">
+                        <label>Parent/Guardian's Name</label>
+                        <input type="text" name="parent_name" class="form-control ">
+                    </div>
+                    <div class="form-group">
+                        <label>Parent/Guardian's Contact Number</label>
+                        <input type="text" name="parent_phone" class="form-control ">
+                    </div>
+                    <br>
                     <div class="form-group">
                         <input type="submit" class="btn btn-dark" value="Submit">
                         <input type="reset" class="btn btn-secondary ml-2" value="Reset">
