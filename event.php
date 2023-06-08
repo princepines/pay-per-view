@@ -20,10 +20,18 @@ if ($_ENV['ISLIVE'] == "0") {
 }
 
 if(time() - $_SESSION['timestamp'] > 1800) { //subtract new timestamp from the old one
+    $code = $_SESSION["code"];
+    $sql = "UPDATE events SET device_once = '0' WHERE code = '$code'";
+if ($mysqli->query($sql) === true)
+{
+    // Unset all of the session variables
     $_SESSION = array();
+    // Destroy the session.
     session_destroy();
-    header("location: login.php");; //redirect to index.php
+    // Redirect to login page
+    header("location: login.php");
     exit;
+}
 } else {
     $_SESSION['timestamp'] = time(); //set new timestamp
 }
