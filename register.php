@@ -227,7 +227,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="form-group">
                         <label>Phone Number</label>
                         <input type="text" name="phone" class="form-control ">
-                    </div><br>
+                    </div>
                     <div class="form-group">
                         <label>Grade Level and Strand/Course</label>
                         <input type="text" name="grade_course" class="form-control ">
