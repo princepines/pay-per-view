@@ -26,7 +26,7 @@ if (!isset($_SESSION['loggedin'])) {
 <body>
     <?php require 'nav.php';?>
     <div class="container">
-        <div class="row">
+        <div class="row g-0">
             <div class="col">
                 <h1>About this Project</h1>
                 <p>This project is made by K4th Production, Princepines Programming Group for the TechSPARKS IBMLT PPV
