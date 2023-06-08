@@ -78,7 +78,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 								$_SESSION["paid"] = "";
 								$_SESSION["device_once"] = "";
 								session_abort();
-								$paid_err = "You have already logged in. Please contact us in messenger (". $messenger_link .") to reset your device.";
+								$paid_err = "You have already logged in. Please contact us in messenger (". $messenger_link .") to reset your code.";
 							} else {
 								$sql4 = "UPDATE events SET device_once = '1' WHERE code = '$code'";
 								$result3 = mysqli_query($mysqli, $sql4);

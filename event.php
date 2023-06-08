@@ -35,7 +35,15 @@ if ($_ENV['ISLIVE'] == "0") {
     </script>
     <link rel="icon" type="image/x-icon" href="white.png">
     <script type='text/javascript' src="restrict.js"></script>
-    <meta http-equiv="refresh" content="1800;url=logout.php" />
+    <?php 
+    require "config.php";
+    sleep(1800);
+    $code = $_SESSION["code"];
+    $sql = "UPDATE events SET device_once = '0' WHERE code = '$code'";
+    if ($mysqli->query($sql) === true) {
+        echo '<meta http-equiv="refresh" content="url=logout.php" />';
+    }
+    ?>
 </head>
 
 <body>
@@ -46,6 +54,7 @@ if ($_ENV['ISLIVE'] == "0") {
                 if(!empty($stream_err)){
                     echo '<div class="alert alert-danger">' . $stream_err . '</div>';
                 }
+                
                 ?>
             <script src="https://hlsjs.video-dev.org/dist/hls.js"></script>
             <video id="video" controls autoplay></video>
