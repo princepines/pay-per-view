@@ -13,6 +13,8 @@ require 'config.php';
 
 $firstname_err = $lastname_err = $email_err = $phone_err = "";
 $code_confirm = $instructions = "";
+$grade_course_err = $school_err = "";
+
 // function to clean input data
 function test_input($data)
 {
@@ -60,6 +62,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $phone_err = "Only numbers allowed";
         }
     }
+    if (empty($_POST["grade_course"])) {
+        $grade_course_err = "Grade level and strand/course is required";
+    } else {
+        $grade_course = test_input($_POST["grade_course"]);
+        // check if grade level and strand/course is valid
+        if (!preg_match("/^[a-zA-Z0-9-' ]*$/", $grade_course)) {
+            $grade_course_err = "Only letters, numbers and white space allowed";
+        }
+    }
+    if (empty($_POST["school"])) {
+        $school_err = "School is required";
+    } else {
+        $school = test_input($_POST["school"]);
+        // check if school is valid
+        if (!preg_match("/^[a-zA-Z0-9-' ]*$/", $school)) {
+            $school_err = "Only letters, numbers and white space allowed";
+        }
+    }
+
 
 
     // generate function for code
@@ -76,11 +97,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // submit data to action.php
     if (empty($firstname_err) && empty($lastname_err) && empty($email_err) && empty($phone_err)) {
      // Prepare an insert statement
-     $sql = "INSERT INTO events (code, firstname, lastname, email, phone, paid, device_once) VALUES (?, ?, ?, ?, ?, ?, ?)";
+     $sql = "INSERT INTO events (code, firstname, lastname, email, phone, paid, device_once, grade_course, school) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
      if ($stmt = mysqli_prepare($mysqli, $sql)) {
         // Bind variables to the prepared statement as parameters
-        mysqli_stmt_bind_param($stmt, "sssssss", $param_code, $param_firstname, $param_lastname, $param_email, $param_phone, $param_paid, $param_device_once);
+        mysqli_stmt_bind_param($stmt, "sssssssss", $param_code, $param_firstname, $param_lastname, $param_email, $param_phone, $param_paid, $param_device_once, $param_grade_course, $param_school);
 
         // Set parameters
         $param_code = generateRandomString();
@@ -90,6 +111,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $param_phone = $phone;
         $param_paid = "0";
         $param_device_once = "0";
+        $param_grade_course = $grade_course;
+        $param_school = $school;
+        
 
         // Attempt to execute the prepared statement
         if (mysqli_stmt_execute($stmt)) {
@@ -203,6 +227,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="form-group">
                         <label>Phone Number</label>
                         <input type="text" name="phone" class="form-control ">
+                    </div><br>
+                    <div class="form-group">
+                        <label>Grade Level and Strand/Course</label>
+                        <input type="text" name="grade_course" class="form-control ">
+                    </div><br>
+                    <div class="form-group">
+                        <label>Full Name of School</label>
+                        <input type="text" name="school" class="form-control ">
                     </div><br>
                     <div class="form-group">
                         <input type="submit" class="btn btn-dark" value="Submit">

@@ -29,6 +29,8 @@ if($mysqli === false){
         `lastname` varchar(255) NOT NULL,
         `email` varchar(255) NOT NULL,
         `phone` varchar(255) NOT NULL,
+        `school` varchar(255) NOT NULL,
+        `grade_course` varchar(255) NOT NULL,
         `paid` varchar(255) NOT NULL,
         `device_once` varchar(255) NOT NULL,
         `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
