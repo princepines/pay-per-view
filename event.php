@@ -62,8 +62,6 @@ if ($mysqli->query($sql) === true)
                     echo '<div class="alert alert-danger">' . $stream_err . '</div>';
                 }
             ?>
-        </div>
-        <div class="row">
             <script src="https://hlsjs.video-dev.org/dist/hls.js"></script>
             <video id="video" controls autoplay></video>
             <script>
