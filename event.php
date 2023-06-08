@@ -56,12 +56,15 @@ if ($mysqli->query($sql) === true)
 <body>
     <?php require 'nav.php';?>
     <div class="container">
-        <div class="row">
+    <div class="row">
+            <div class="col">
             <?php
                 if(!empty($stream_err)){
                     echo '<div class="alert alert-danger">' . $stream_err . '</div>';
                 }
-            ?>
+            ?>            </div>
+        </div>
+        <div class="row">
             <script src="https://hlsjs.video-dev.org/dist/hls.js"></script>
             <video id="video" controls autoplay></video>
             <script>
