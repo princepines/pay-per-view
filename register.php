@@ -226,6 +226,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     echo '<div class="alert alert-danger">' . $phone_err . '</div>';
                 }
 
+                if (!empty($grade_course_err)) {
+                    echo '<div class="alert alert-danger">' . $grade_course_err . '</div>';
+                }
+
+                if (!empty($school_err)) {
+                    echo '<div class="alert alert-danger">' . $school_err . '</div>';
+                }
+
+                if (!empty($parent_name_err)) {
+                    echo '<div class="alert alert-danger">' . $parent_name_err . '</div>';
+                }
+
+                if (!empty($parent_phone_err)) {
+                    echo '<div class="alert alert-danger">' . $parent_phone_err . '</div>';
+                }
+
                 if (!empty($code_confirm)) {
                     echo '<div class="alert alert-success">' . $code_confirm . '</div>';
                 }
